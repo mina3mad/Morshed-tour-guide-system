@@ -24,6 +24,11 @@ export class CreateGuideProfilesTable1771258515689 implements MigrationInterface
             isUnique: true, // One-to-one relationship with users
           },
           {
+            name: 'name',
+            type: 'varchar(100)',
+            isNullable: true,
+          },
+          {
             name: 'yearsOfExperience',
             type: 'int',
             isNullable: true,
@@ -31,7 +36,7 @@ export class CreateGuideProfilesTable1771258515689 implements MigrationInterface
           {
             name: 'hourlyRate',
             type: 'int',
-            isNullable: false,
+            isNullable: true,
           },
           {
             name: 'ratingCount',

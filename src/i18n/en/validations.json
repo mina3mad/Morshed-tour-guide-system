@@ -6,5 +6,7 @@
   "invalidGender": "Gender must be one of the following values: Male, Female, or PreferNotToSay",
   "passwordMustBeString": "Password must be a string",
   "invalidPassword": "Password must be at least 8 characters long and contain at least one number and one special character (!@#$%^&*)",
-  "invalidRole": "Role must be one of the following values: Client, Admin, or Guide"
+  "invalidRole": "Role must be one of the following values: Client, Admin, or Guide",
+  "mustBeString":"This field must be string",
+  "nameMaxLength":"Name max lenght is 100"
 }

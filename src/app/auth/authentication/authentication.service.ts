@@ -22,6 +22,8 @@ import { OtpCodeStatus } from '../otp-codes/enum/otp-code-status.enum';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { UserGender } from 'src/app/user-profiles/users/enum/user-gender.enum';
 import { TokensService } from '../tokens/tokens.service';
+import { UserRole } from 'src/app/user-profiles/users/enum/user-role.enum';
+import { ClientProfilesService } from 'src/app/user-profiles/client-profiles/client-profiles.service';
 
 @Injectable()
 export class AuthenticationService {
@@ -33,6 +35,7 @@ export class AuthenticationService {
     private readonly otpCodeService: OtpCodesService,
     private readonly i18n: CustomI18nService,
     private readonly tokensService: TokensService,
+    private readonly clientProfilesService:ClientProfilesService
   ) {}
 
   async signUp(
@@ -66,6 +69,9 @@ export class AuthenticationService {
     const savedUser = await this.userRepository.save(user);
 
     //create client profile if role is client
+    if (savedUser.role === UserRole.Client) {
+      await this.clientProfilesService.createProfile(savedUser.id);
+    }
 
     //create otp
     const otpSent = await this.otpCodeService.generateOtp(
@@ -193,10 +199,13 @@ export class AuthenticationService {
         email: emailLowerCase,
         googleId: googleUser.googleId,
         avatar: googleUser.avatar,
+        role:UserRole.Client,
         isVerified: true,
         password: null,
       });
       await this.userRepository.save(user);
+      // Auto-create client profile for Google sign-ups
+      await this.clientProfilesService.createProfile(user.id);
     }
 
     const { accessToken, refreshToken } =

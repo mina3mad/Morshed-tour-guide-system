@@ -11,5 +11,11 @@
     "userAlreadyVerified":"You are already verified",
     "verifiedSuccessfully":"Verified successfully",
     "invalidCredentials":"Invalid credentials",
-    "passwordResetSuccessfully":"Password Reset Successfully"
+    "passwordResetSuccessfully":"Password Reset Successfully",
+    "loggedOutSuccessfully":"Logged out successfully",
+    "activatedSuccessfully":"Activated successfully",
+    "deactivatedSuccessfully":"Deactivated successfully",
+    "profileNotFound":"Profile not found",
+    "clientProfileAlreadyExist":"Client profile already exists",
+    "clientProfileDeletedSuccessfully":"Client profile deleted successfully"
 }

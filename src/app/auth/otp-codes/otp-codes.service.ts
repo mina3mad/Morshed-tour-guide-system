@@ -9,8 +9,8 @@ import { IsNull, Repository } from 'typeorm';
 import { User } from 'src/app/user-profiles/users/entities/user.entity';
 import { OtpCodeType } from './enum/otp-code-type.enum';
 import { CustomI18nService } from 'src/i18n/i18n.service';
-import * as emailTemplates from '../email/templates/emailTemplates.json';
-import { sendEmail } from '../email/utils/sendEmail';
+import * as emailTemplates from '../../../shared/email/templates/emailTemplates.json';
+import { sendEmail } from '../../../shared/email/utils/sendEmail';
 import { OtpCodeStatus } from './enum/otp-code-status.enum';
 
 @Injectable()

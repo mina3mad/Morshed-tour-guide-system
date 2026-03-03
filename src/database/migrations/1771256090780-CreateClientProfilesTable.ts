@@ -23,6 +23,11 @@ export class CreateClientProfilesTable1771256090780 implements MigrationInterfac
             isNullable: false,
             isUnique: true, // One-to-one relationship with users
           },
+          {
+            name: 'name',
+            type: 'varchar(100)',
+            isNullable: true,
+          },
           //   {
           //     name: "country",
           //     type: "varchar(100)",

@@ -9,6 +9,7 @@ import { OtpCode } from '../otp-codes/entities/otp-code.entity';
 import { PassportModule } from '@nestjs/passport';
 import { GoogleStrategy } from './strategies/google.strategy';
 import { TokensModule } from '../tokens/tokens.module';
+import { ClientProfilesModule } from 'src/app/user-profiles/client-profiles/client-profiles.module';
 
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import { TokensModule } from '../tokens/tokens.module';
     TypeOrmModule.forFeature([User, OtpCode]),
     OtpCodesModule,
     I18n_Module,
-    TokensModule
+    TokensModule,
+    ClientProfilesModule
   ],
   providers: [AuthenticationService, GoogleStrategy],
   controllers: [AuthenticationController],

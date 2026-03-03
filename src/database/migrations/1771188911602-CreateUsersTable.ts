@@ -40,6 +40,11 @@ export class CreateUsersTable1771188911602 implements MigrationInterface {
             type: 'varchar(255)',
             isNullable: true,
           },
+            {
+              name: "country",
+              type: "varchar(100)",
+              isNullable: true,
+            },
           {
             name: 'role',
             type: 'enum',

@@ -19,6 +19,9 @@ export class UserResponseDto {
   role: UserRole;
 
   @Expose()
+  country: string;
+
+  @Expose()
   isActive: boolean;
 
   @Expose()

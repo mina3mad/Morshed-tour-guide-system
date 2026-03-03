@@ -1,9 +1,10 @@
 import { BaseEntity } from 'src/shared/base.entity';
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany, OneToOne } from 'typeorm';
 import { UserGender } from '../enum/user-gender.enum';
 import { UserRole } from '../enum/user-role.enum';
 import { OtpCode } from 'src/app/auth/otp-codes/entities/otp-code.entity';
 import { RefreshToken } from 'src/app/auth/tokens/entities/token.entity';
+import { ClientProfile } from '../../client-profiles/entities/client-profile.entity';
 
 @Entity({ name: 'users' })
 export class User extends BaseEntity {
@@ -19,6 +20,9 @@ export class User extends BaseEntity {
     nullable: true,
   })
   gender: UserGender;
+
+  @Column({nullable:true})
+  country?:string;
 
   // @Column({select:false})
   @Column({ nullable: true })
@@ -52,8 +56,8 @@ export class User extends BaseEntity {
   @OneToMany(() => OtpCode, (otpCode) => otpCode.user)
   otpCodes: OtpCode[];
 
-  //   @OneToOne(() => ClientProfile, clientProfile => clientProfile.user)
-  //   clientProfile: ClientProfile;
+  @OneToOne(() => ClientProfile, (clientProfile) => clientProfile.user)
+  clientProfile: ClientProfile;
 
   //   @OneToOne(() => GuideProfile, guideProfile => guideProfile.user)
   //   guideProfile: GuideProfile;

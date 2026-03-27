@@ -3,27 +3,30 @@ import { DatabaseService } from './database.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
-
-
 @Module({
-  imports:[
+  imports: [
     TypeOrmModule.forRootAsync({
       // imports:[ConfigModule],
-      useFactory:async(configService:ConfigService) => {
+      useFactory: async (configService: ConfigService) => {
         return {
-          type: "postgres",
-          host: configService.getOrThrow("DB_HOST"),
-          port: configService.getOrThrow("DB_PORT"),
-          username: configService.getOrThrow("DB_USERNAME"),
-          password: configService.getOrThrow("DB_PASSWORD"),
-          database: configService.getOrThrow("DB_NAME"),
-          entities: [__dirname + "/../**/*.entity{.ts,.js}"],
+          type: 'postgres',
+          host: configService.getOrThrow('DB_HOST'),
+          port: configService.getOrThrow('DB_PORT'),
+          username: configService.getOrThrow('DB_USERNAME'),
+          password: configService.getOrThrow('DB_PASSWORD'),
+          database: configService.getOrThrow('DB_NAME'),
+          entities: [__dirname + '/../**/*.entity{.ts,.js}'],
           synchronize: false,
           // ssl:true
-        }
+          extra: {
+            ssl: {
+              rejectUnauthorized: false,
+            },
+          },
+        };
       },
-      inject:[ConfigService],
-    })
+      inject: [ConfigService],
+    }),
   ],
   providers: [DatabaseService],
 })

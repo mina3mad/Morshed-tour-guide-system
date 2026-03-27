@@ -7,17 +7,17 @@ import { ClientProfile } from './entities/client-profile.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CustomI18nService } from 'src/i18n/i18n.service';
-import { CloudinaryService } from 'src/shared/cloudinary.service';
 import { ClientProfileResponseDto } from './dto/client-profile-response.dto';
 import { plainToInstance } from 'class-transformer';
 import { UpdateClientProfileDto } from './dto/update-client-profile.dto';
+import { S3Service } from 'src/shared/s3.service';
 
 @Injectable()
 export class ClientProfilesService {
   constructor(
     @InjectRepository(ClientProfile)
     private readonly clientProfileRepository: Repository<ClientProfile>,
-    private readonly cloudinaryService: CloudinaryService,
+    private readonly s3Service: S3Service,
     private readonly i18n: CustomI18nService,
   ) {}
 
@@ -68,15 +68,15 @@ export class ClientProfilesService {
     if (imageFile) {
       // Delete old image if exists
       if (profile.image) {
-        await this.cloudinaryService.deleteFile(
-          `uploads/client_profile_images/${profile.image}`,
+        await this.s3Service.deleteFile(
+          `photos/client_profile_images/${profile.image}`,
         );
       }
-      const uploaded = await this.cloudinaryService.uploadFile(
+      const uploaded = await this.s3Service.uploadFile(
         imageFile,
-        'uploads/client_profile_images',
+        'photos/client_profile_images',
       );
-      profile.image = uploaded.public_id.split('/').pop();
+      profile.image = uploaded;
     }
 
     Object.assign(profile, updateDto);

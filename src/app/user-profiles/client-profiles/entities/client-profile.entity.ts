@@ -27,8 +27,8 @@ export class ClientProfile extends BaseEntity {
     if (!this.image) {
       return null;
     }
-    const baseUrl = process.env.CLOUDINARY_BASE_URL || "";
-    return `${baseUrl}client_profile_images/${this.image}`;
+    const baseUrl = process.env.S3_BASE_URL || "";
+    return `${baseUrl}photos/client_profile_images/${this.image}`;
   }
 
   @Column({ default: 0 })

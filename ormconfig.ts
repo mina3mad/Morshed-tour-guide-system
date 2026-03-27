@@ -17,9 +17,9 @@ export const AppDataSource = new DataSource({
   migrationsRun: false,
   migrations: ["dist/**/**/migrations/*.js"],
 //   ssl: true,
-//   extra: {
-//     ssl: {
-//       rejectUnauthorized: false,
-//     },
-//   },
+  extra: {
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  },
 });

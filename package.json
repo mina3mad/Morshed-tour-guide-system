@@ -26,6 +26,7 @@
     "schema:drop": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli schema:drop -d ormconfig.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1016.0",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^4.0.3",
     "@nestjs/core": "^10.0.0",
@@ -41,7 +42,6 @@
     "bcrypt": "^6.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.3",
-    "cloudinary": "^2.9.0",
     "compression": "^1.8.1",
     "cookie-parser": "^1.4.7",
     "cross-var": "^1.1.0",
